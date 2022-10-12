@@ -3,7 +3,6 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const ErrorNotAuthorized = require('../errors/error-not-authorized');
 
-const URL_REGEXP = /^https?:\/\/[\da-z-]+\.[\da-z-]+\.?[\d\w\-/.]*$/i;
 // Поля схемы пользователя
 const userSchema = new mongoose.Schema({
   name: {

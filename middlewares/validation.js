@@ -19,6 +19,7 @@ const validateLogin = celebrate({
 const validateUserInfo = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),
+    email: Joi.string().email(),
   }),
 });
 
