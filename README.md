@@ -1,8 +1,10 @@
 # Проект Movie-API
 API для регистрации и авторизации пользователя, редактирование карточек фильмов
-доступен по адресу
-51.250.4.254
-api-diplom.skylynxx.nomoredomains.icu
+
+доступен по адресам:
+
+- 51.250.4.254
+- api-diplom.skylynxx.nomoredomains.icu
 
 
 ## Директории
