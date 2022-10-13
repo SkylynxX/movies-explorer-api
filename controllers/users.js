@@ -9,7 +9,6 @@ const { NODE_ENV, JWT_SECRET = 'dev-secret' } = process.env;
 // console.log(NODE_ENV === 'production');
 // console.log(JWT_SECRET);
 
-
 // # возвращает информацию о пользователе (email и имя)
 // GET /users/me
 module.exports.getUser = (req, res, next) => User.findById(req.user._id)
