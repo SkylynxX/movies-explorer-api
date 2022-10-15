@@ -12,7 +12,7 @@ const { NODE_ENV, JWT_SECRET = 'dev-secret' } = process.env;
 // # возвращает информацию о пользователе (email и имя)
 // GET /users/me
 module.exports.getUser = (req, res, next) => User.findById(req.user._id)
-  .orFail(() => next(new ErrorNotFound('Пользователь с указанным _id не найдена.')))
+  .orFail(() => { throw new ErrorNotFound('Пользователь с указанным _id не найдена.'); })
   .then((user) => res.send(user))
   .catch(next);
 
@@ -64,7 +64,10 @@ module.exports.updateUserInfoByID = (req, res, next) => User.findByIdAndUpdate(
   .catch((err) => {
     if (err.name === 'ValidationError') {
       next(new ErrorBadRequest('Переданы некорректные данные при создании пользователя.'));
+    } else if (err.code === 11000) {
+      next(new ErrorConflict('Пользователь с таким адресом электронной почты уже зарегистрирован.'));
     } else {
+      // console.log(err);
       next(err);
     }
   });

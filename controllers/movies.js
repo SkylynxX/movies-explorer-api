@@ -21,7 +21,7 @@ module.exports.createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer: trailerLink,
+    trailer,
     nameRU,
     nameEN,
     thumbnail,
@@ -34,7 +34,7 @@ module.exports.createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailerLink,
+    trailer,
     nameRU,
     nameEN,
     thumbnail,
@@ -55,7 +55,7 @@ module.exports.createMovie = (req, res, next) => {
 // # удаляет сохранённый фильм по id
 // DELETE /movies/_id
 module.exports.deleteMovieByID = (req, res, next) => Movie.findById(req.params.movieId)
-  .orFail(() => next(new ErrorNotFound('Карточка с указанным _id не найдена.')))
+  .orFail(() => { throw new ErrorNotFound('Карточка с указанным _id не найдена.'); })
   .then((movie) => {
     if (movie.owner.toString() !== req.user._id) {
       throw new ErrorForbidden('Операция удаления карточки недоступна данному пользователю.');
